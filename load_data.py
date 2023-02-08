@@ -18,17 +18,17 @@ image_directory = 'data/images/'
 mask_directory = 'data/masks/'
 
 SIZE = 256
-image_dataset = []  #Many ways to handle data, you can use pandas. Here, we are using a list format.  
-mask_dataset = []  #Place holders to define add labels. We will add 0 to all parasitized images and 1 to uninfected.
+image_dataset = []   
+mask_dataset = []  
 
 images = os.listdir(image_directory)
 
         
 images = os.listdir(image_directory)
-for i, image_name in enumerate(images):    #Remember enumerate method adds a counter and returns the enumerate object
+for i, image_name in enumerate(images):   
         path = image_directory+image_name
         #path = path.decode()
         image = cv2.imread(path, cv2.IMREAD_COLOR)
         image = cv2.resize(image, (SIZE, SIZE))
-        image = image/255.0 #normalization, normalization vs standardization
+        image = image/255.0 
         image_dataset.append(np.array(image))
