@@ -1,40 +1,50 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Feb  7 06:14:45 2023
+Created on Fri Mar 10 06:09:50 2023
 
-@author: anaworker
+@author: anadjj
 """
+#import cv2
+  
+# path
+path = r'C:\Users\anadjj\OneDrive - Comtrade Group\geeks14.png'
 
+a = 5+2
+
+print(a)
+  
+# Using cv2.imread() method
+#img = cv2.imread(path)
+  
+# Displaying the image
+#cv2.imshow('image', img)
+
+import os
 import cv2
 from matplotlib import pyplot as plt
 from PIL import Image
 import numpy as np
+from keras.utils import normalize
 
-image_directory = 'data/images/'
-image_name = 'cju0qkwl35piu0993l0dewei2.jpg'
+        
+#load dataset1
+   
+image_directory = 'dataset1/Original/'
+mask_directory = 'dataset1/Ground Truth/'
+
 
 SIZE = 256
+image_dataset = []
+mask_dataset = []
 
-print(image_directory+image_name)
+images = os.listdir(image_directory)
+images.sort()
 
-image = cv2.imread(image_directory+image_name)
+# make a method from the below commented code for testing on one image
+# def visualize image
+image_name = "10.png"
 
-type(image)
+# cv2.imread function in OpenCV reads an image in BGR format by default, while Image.fromarray in Pillow interprets the array as RGB by default
+image = cv2.imread(image_directory+image_name, 1) 
 image.shape
-plt.imshow(image)
-
-# THIS WILL give strange coloe because opencv reads in an images in bgr,
-#matplot expexts it to be rgb
-image2 = cv2.imread(image_directory+image_name, cv2.IMREAD_COLOR)
-
-image3 = Image.fromarray(image2)
-image4 = image3.resize((SIZE, SIZE))
-image5 = np.array(image4)
-
-type(image2)
-image2.shape
-plt.imshow(image2)
-
-plt.imshow(cv2.cvtColor(image3, cv2.COLOR_BGR2RGB))
-
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
